@@ -1,1 +1,0 @@
-result.append(str.charAt(0));
