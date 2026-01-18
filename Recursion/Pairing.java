@@ -23,12 +23,14 @@ public class Pairing {
             return pair;
         }
         //Work
-        int singlePair = totalWays(pair-1);
-        int multiPair = (pair-1) * totalWays(pair-2);
-        return singlePair + multiPair;
+        // int singlePair = totalWays(pair-1);
+        // int multiPair = (pair-1) * totalWays(pair-2);
+        // return singlePair + multiPair;
+
+        return totalWays(pair-1) + (pair-1) * totalWays(pair-2);
     }
 
     public static void main(String[] args) {
-        System.out.println(totalWays(10));
+        System.out.println(totalWays(3));
     }
 }
