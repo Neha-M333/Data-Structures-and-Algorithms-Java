@@ -1,6 +1,5 @@
 /*
  * Program: Practice of Recursion in Java
- * Author: [Your Name]
  * Description: This program demonstrates several common recursion problems:
  * 1. getPos      - Prints all indices of a key in an array.
  * 2. printWord   - Prints the digits of a number in words.
