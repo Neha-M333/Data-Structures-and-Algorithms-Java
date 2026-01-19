@@ -11,6 +11,7 @@ public class MergeSort {
             return;
         }
 
+        //Working
         int mid = si + (ei - si)/2;       // Find The Middle
         sort(arr, si, mid);               // Sort left part
         sort(arr, mid+1, ei);             // Sort right part
