@@ -13,9 +13,9 @@ public class QuickSort {
         }
 
         //Working
-        int pIdx = partition(arr, si, ei);   // We define the pivot and partition
-        sort(arr, si, pIdx-1);               // Sorting of left part 
-        sort(arr, pIdx+1, ei);               // Sorting of right part
+        int pIdx = partition(arr, si, ei);   // Partition the array and place pivot at its correct position.
+        sort(arr, si, pIdx-1);               // Sort of left part 
+        sort(arr, pIdx+1, ei);               // Sort of right part
     }
 
     public static int partition(int arr[], int si, int ei){
@@ -30,11 +30,11 @@ public class QuickSort {
                 arr[i] = temp;
             }
         }
-        i++;                     // This is for the pivot to be sorted
+        i++;                     // Move to the correct position for the pivot
         int temp = pivot;             
         arr[ei] = arr[i];
         arr[i] = temp; 
-        return i;
+        return i;                // Return final position of the pivot
     }
 
     public static void main(String[] args){
