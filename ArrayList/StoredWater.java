@@ -17,6 +17,29 @@ public class StoredWater {
         return maxStore;
     }
 
+    public static int optimizedStoredWater(ArrayList<Integer> height){
+        int maxStore = 0;
+        int lp = 0;
+        int rp = height.size()-1;
+        int n = height.size();
+
+        while(lp < rp){
+            // Calculate the Water stored
+            int minHeight = Math.min(height.get(lp), height.get(rp));
+            int width = rp - lp;
+            int currStore = minHeight * width;
+            maxStore = Math.max(maxStore, currStore);
+
+            // Update the Left Pointer and Right Pointer
+            if(height.get(lp) < height.get(rp)){
+                lp++;
+            }else{
+                rp--;
+            }
+        }
+        return maxStore;
+    }
+
     public static void main(String[] args){
         ArrayList<Integer> height = new ArrayList<>();
 
@@ -31,6 +54,7 @@ public class StoredWater {
         height.add(7);
 
         System.out.println(storedWater(height));
+        System.out.println(optimizedStoredWater(height));
 
     }
 }
