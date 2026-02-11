@@ -1,4 +1,3 @@
-
 public class LoopDetection {
 
     static class Node{
@@ -129,6 +128,50 @@ public class LoopDetection {
         return mergeLl.next;
     }
 
+    // Zig-Zag linked list
+    public void zigZag(){
+        if (head == null || head.next == null) return;
+
+        // Find the mid
+        Node slow = head;
+        Node fast = head.next;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node mid = slow;
+
+        // Reverce the second half
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        // Combine the left and righ node
+        Node left = head;
+        Node right = prev;
+        Node nextLh, nextRh;
+
+        while(right != null){
+            nextLh = left.next;
+            nextRh = right.next;
+
+            left.next = right;
+            right.next = nextLh;
+
+            left = nextLh;
+            right = nextRh;
+        }
+    }
+
     // Print the linked list
     public static void print(){
         Node temp = head;
@@ -154,16 +197,22 @@ public class LoopDetection {
 
         LoopDetection obj = new LoopDetection();
 
-        head = new Node(5);
-        head.next = new Node(4);
+        head = new Node(1);
+        head.next = new Node(2);
         head.next.next = new Node(3);
-        head.next.next.next = new Node(2);
-        head.next.next.next.next = new Node(1);
+        head.next.next.next = new Node(4);
+        head.next.next.next.next = new Node(5);
+        head.next.next.next.next.next = new Node(6);
+        // print(); // Before sorting
 
-        print(); // Before sorting
+        // head = obj.mergeSort(head);
 
-        head = obj.mergeSort(head);
+        // print(); // After sorting
 
-        print(); // After sorting
+        print();
+
+        obj.zigZag();
+        print();
+
     }
 }
