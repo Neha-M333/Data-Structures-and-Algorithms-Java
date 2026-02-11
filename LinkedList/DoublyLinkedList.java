@@ -99,6 +99,22 @@ public class DoublyLinkedList {
         System.out.println("NULL");
     }
 
+    // Reverce the doubly linked list
+    public void  reverce(){
+        Node prev = null;
+        Node curr = head;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList dl = new DoublyLinkedList();
         dl.addFirst(5);
@@ -114,6 +130,9 @@ public class DoublyLinkedList {
         dl.print();
 
         dl.removeLast();
+        dl.print();
+
+        dl.reverce();
         dl.print();
     }
 }
