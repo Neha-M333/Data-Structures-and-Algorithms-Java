@@ -64,32 +64,90 @@ public class Assignment {
         return answer;
     }
 
-    // Butterfly ArrayList
+    // Beautiful ArrayList
+    // Menthod 1
+    public ArrayList<Integer> beautifulArray(int n){
+        ArrayList<Integer> result = new ArrayList<>();
+        result.add(1);
+        while (result.size() < n) {
+
+            ArrayList<Integer> next = new ArrayList<>();
     
+            // First generate odd numbers
+            for (int num : result) {
+                int odd = 2 * num - 1;
+                if (odd <= n) {
+                    next.add(odd);
+                }
+            }
+    
+            // Then generate even numbers
+            for (int num : result) {
+                int even = 2 * num;
+                if (even <= n) {
+                    next.add(even);
+                }
+            }
+    
+            result = next;
+        }
+    
+        return result;
+    }
+
+    // Method 2
+    public ArrayList<Integer> beautifulArrayMethod2(int n) {
+        return divideConquer(n);
+    }
+
+    private ArrayList<Integer> divideConquer(int n) {
+
+        ArrayList<Integer> result = new ArrayList<>();
+
+        if (n == 1) {
+            result.add(1);
+            return result;
+        }
+
+        // Odd part
+        ArrayList<Integer> oddPart = divideConquer((n + 1) / 2);
+        for (int num : oddPart) {
+            result.add(2 * num - 1);
+        }
+
+        // Even part
+        ArrayList<Integer> evenPart = divideConquer(n / 2);
+        for (int num : evenPart) {
+            result.add(2 * num);
+        }
+
+        return result;
+    }
+
 
     public static void main(String[] args) {
         //-------------------------------------
         // MONOTRONIC ARRAY LIST
         //-------------------------------------
-        // Assignment obj = new Assignment();
-        // ArrayList<Integer> num = new ArrayList<>();
+        Assignment obj = new Assignment();
+        ArrayList<Integer> num = new ArrayList<>();
 
-        // Arrays.asList(1,3,2);
-        // System.out.println(obj.isMonotonic(num));
+        Arrays.asList(1,3,2);
+        System.out.println(obj.isMonotonic(num));
 
         //-------------------------------------
         // LONELY NUMBERS IN ARRAYLIST
         //-------------------------------------
-        // Assignment obj = new Assignment();
+        Assignment obj = new Assignment();
 
-        // ArrayList<Integer> num = new ArrayList<>(Arrays.asList(10,6,5,8));
+        ArrayList<Integer> num = new ArrayList<>(Arrays.asList(10,6,5,8));
 
-        // ArrayList<Integer> lonely = obj.findLonely(num);
+        ArrayList<Integer> lonely = obj.findLonely(num);
 
-        // for(int i=0; i<lonely.size(); i++){
-        //     System.out.print(lonely.get(i) + " ");
-        // }
-        // System.out.println();
+        for(int i=0; i<lonely.size(); i++){
+            System.out.print(lonely.get(i) + " ");
+        }
+        System.out.println();
 
 
         //-------------------------------------
@@ -105,5 +163,19 @@ public class Assignment {
         int result = obj.mostFrequent(num, key);
 
         System.out.println("Most frequent after key = " + result);
+
+        //-------------------------------------
+        // Beautiful ArrayList Method 1 & Method 2
+        //-------------------------------------
+        Assignment obj = new Assignment();
+
+        int n = 5;   // You can change this value
+
+        ArrayList<Integer> result = obj.beautifulArrayMethod2(n);
+
+        for (int num : result) {
+            System.out.print(num + " ");
         }
+    }
+
 }
