@@ -83,6 +83,7 @@ public class stack {
         }
     }
 
+    //Push the number to the bottom of the stack
     public static void pushBottom(Stack <Integer> s, int data){
         if(s.isEmpty()){
             s.push(data);
@@ -94,6 +95,7 @@ public class stack {
         s.push(top);
     }
 
+    // Reverce the string.
     public static String reverce(String str){
         Stack<Character> s = new Stack<>();
         int idx = 0;
@@ -111,6 +113,7 @@ public class stack {
         return result.toString();
     }
 
+    // Reverce the stack
     public static void reverceStack(Stack <Integer> s){
         if(s.isEmpty()){
             return;
@@ -121,6 +124,7 @@ public class stack {
         pushBottom(s, top);
     }
 
+    // Find the stock span
     public static void stockSpan(int stock[], int span[]){
         Stack <Integer> s = new Stack<>();
         span[0] = 1;
@@ -143,6 +147,7 @@ public class stack {
         }
     }
 
+    // Main function
     public static void main(String[] args){
         stackA s = new stackA();
 
