@@ -83,9 +83,10 @@
             }
         }
 
-        // Find the next greatest of right side
+        // Find the next greatest from right side
         public static void ngr(int[] arr){
             // 1. Create stack.
+            // (the array is traversed from right(last) to left(first))
             // 2. Pop till you find the greated or the stack is empty.
             // 3. If stack is empty return  in ndr = -1 or  ndr = currunt top of stack.
             // 4. Push in stack.
@@ -111,15 +112,122 @@
                 // (4)
                 s.push(i);
             }
+            System.out.print("Finding the next greatest number for right side: ");
+            print(ngr);
+            }
 
-            for(int i=0; i<ngr.length; i++){
-                System.out.print(ngr[i] + ",");
+            // Find the gretest number from left side
+            public static void ngl(int[] arr){
+                // 1. Create stack.
+                // (the array is traversed from left(first) to right(last))
+                // 2. Pop till you find the greated or the stack is empty.
+                // 3. If stack is empty return  in ndr = -1 or  ndr = currunt top of stack.
+                // 4. Push in stack.
+
+                // (1)
+                Stack<Integer> s = new Stack<>();
+                int ngl[] = new int[arr.length];
+
+                // (2)
+                for(int i=0; i<arr.length; i++){
+                    while(!s.isEmpty() && arr[s.peek()] <= arr[i]){
+                        s.pop();
+                    }
+
+                    // (3)
+                    if(s.isEmpty()){
+                        ngl[i] = -1;
+                    }else{
+                        ngl[i] = arr[s.peek()];
+                    }
+
+                    // (4)
+                    s.push(i);
+                }
+
+                System.out.print("Finding the next greatest number for left side: ");
+                print(ngl);
+            }
+
+            // Find the next smallest number from right side.
+            public static void nsr(int[] arr){
+                // 1. Create stack.
+                // (the array is traversed from right(last) to left(first))
+                // 2. Pop till you find the smallest or the stack is empty.
+                // 3. If stack is empty return  in ndr = -1 or  ndr = currunt top of stack.
+                // 4. Push in stack.
+
+                // (1)
+                Stack<Integer> s = new Stack<>();
+                int nsr[] = new int[arr.length];
+
+                // (2)
+                for(int i=arr.length-1; i >= 0; i--){
+                    while(!s.isEmpty() && arr[s.peek()] >= arr[i]){
+                        s.pop();
+                    }
+
+                    // (3)
+                    if(s.isEmpty()){
+                        nsr[i] = -1;
+                    }else{
+                        nsr[i] = arr[s.peek()];
+                    }
+
+                    // (4)
+                    s.push(i);
+                }
+
+                System.out.print("Finding the next smallest number for left side: ");
+                print(nsr);
+            }
+
+            // Find the next smallest number from left side.
+            public static void nsl(int[] arr){
+                // 1. Create stack.
+                // (the array is traversed from left(first) to right(last))
+                // 2. Pop till you find the smallest or the stack is empty.
+                // 3. If stack is empty return  in ndr = -1 or  ndr = currunt top of stack.
+                // 4. Push in stack.
+
+                // (1)
+                Stack<Integer> s = new Stack<>();
+                int nsl[] = new int[arr.length];
+
+                // (2)
+                for(int i=0; i < arr.length; i++){
+                    while(!s.isEmpty() && arr[s.peek()] >= arr[i]){
+                        s.pop();
+                    }
+
+                    // (3)
+                    if(s.isEmpty()){
+                        nsl[i] = -1;
+                    }else{
+                        nsl[i] = arr[s.peek()];
+                    }
+
+                    // (4)
+                    s.push(i);
+                }
+
+                System.out.print("Finding the next smallest number for left side: ");
+                print(nsl);
+            }
+
+            // Print the result
+            public static void print(int[] arr){
+                for(int i=0; i<arr.length; i++){
+                    System.out.print(arr[i]+ " ");
                 }
                 System.out.println();
             }
 
             public static void main(String[] args) {
                 int arr[] = {6, 8, 0, 1, 3};
-                ngr(arr);
+                /*Finding the next greatest number for right side:*/ ngr(arr);
+                /*Finding the next greatest number for left side:*/ ngl(arr);
+                /*Finding the next smallest number for right side:*/ nsr(arr);
+                /*Finding the next smallest number for left side:*/ nsl(arr);
         }  
     }
