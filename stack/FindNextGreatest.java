@@ -2,7 +2,7 @@
     import java.util.ArrayList;
     import java.util.Stack;
 
-    public class Stack1 {
+    public class FindNextGreatest{
         
         static class stackArrayList{
             ArrayList<Integer> list = new ArrayList<>();
