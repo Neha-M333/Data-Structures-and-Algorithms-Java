@@ -131,6 +131,47 @@ public class BinaryTreeB {
 
             return sum(root.left) + sum(root.right) + root.data;
         }
+
+        // Approch 1: Finding the diameter of the tree
+        public static int diameter(Node root){
+            if(root == null){
+                return 0;
+            }
+
+            int leftDiam = diameter(root.left);
+            int leftHeight = height(root.left);
+            int rightDiam = diameter(root.right);
+            int rightHeight = height(root.right);
+
+            int selfDiam = leftHeight + rightHeight + 1;
+            return Math.max(Math.max(leftDiam, rightDiam), selfDiam);
+            
+        }
+
+        // Appeoch 2: Optimized way to find the diameter of the tree
+        static class Info{
+            int diam;
+            int height;
+
+            public Info(int diam, int height){
+                this.diam = diam;
+                this.height = height;
+            }
+        }
+
+        public static Info optimizedDiameter(Node root){
+            if(root == null){
+                return new Info(0, 0);
+            }
+
+            Info leftInfo = optimizedDiameter(root.left);
+            Info rightInfo = optimizedDiameter(root.right);
+            
+            int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+            int diam = Math.max(Math.max(leftInfo.diam, rightInfo.diam), leftInfo.height + rightInfo.height + 1);
+
+            return new Info(diam, height);
+        }
     }
 
         public static void main(String[] args) {
@@ -167,9 +208,16 @@ public class BinaryTreeB {
             root.right.left = new Node(6);
             root.right.right = new Node(7);
 
+            // BinaryTree tree = new BinaryTree();
+            // System.out.println("Height of the binary tree: "+ tree.height(root));
             System.out.println("Height of the binary tree: "+ BinaryTree.height(root));
             System.out.println("Total number of nodes in binary tree: "+ BinaryTree.count(root));
             System.out.println("Total sum of nodes in binary tree: "+ BinaryTree.sum(root));
+            System.out.println("Diameter of the tree is "+ BinaryTree.diameter(root));
+
+            // BinaryTree.Info info = BinaryTree.optimizedDiameter(root);
+            // System.out.println("Finding diameter of the tree using optimized code: " + info.diam);
+            System.out.println("Finding diameter of the tree using optimized code: "+ BinaryTree.optimizedDiameter(root).diam);
         }
     }
 
